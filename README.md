@@ -121,7 +121,7 @@ Returns a new instance of Buffer that references the same memory as the
 original, but offset and cropped by the start and end indices.
 
 ```c++
-Buffer<uint8_t> b({ 0x00, 0x00, 0x00, 0x00 });
+Buffer<uint8_t> b({ 0x01, 0x02, 0x03, 0x04 });
 
 auto slice = b.slice(2, 4); // <Buffer 03 04>
 ```
