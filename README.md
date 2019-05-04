@@ -62,6 +62,7 @@ Buffer<T> b(anotherBuffer);
 Returns an `integer`, the amount of memory allocated for buf in bytes. Note that
 this does not necessarily reflect the amount of "usable" data within buf.
 
+#### EXAMPLE
 ```c++
 Buffer<uint8_t> b = { 0x00, 0x00 };
 b.length(); // 2
@@ -108,6 +109,7 @@ auto d = a.concat({ b, c });
 ### equals(buffer)
 To compare two buffers you can just use the `==` and `!=` operators.
 
+#### EXAMPLE
 ```c++
 Buffer<uint8_t> b({ 0x03, 0x04 });
 Buffer<uint8_t> c({ 0x05, 0x06 });
@@ -120,6 +122,11 @@ b != c; // true
 Returns a new instance of Buffer that references the same memory as the
 original, but offset and cropped by the start and end indices.
 
+- `size_t` _start = 0_ Where the new Buffer will start.
+- `size_t` _end = buf.length()_ <integer> Where the new Buffer will end (not 
+inclusive).
+
+#### EXAMPLE
 ```c++
 Buffer<uint8_t> b({ 0x01, 0x02, 0x03, 0x04 });
 
