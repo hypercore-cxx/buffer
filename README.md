@@ -114,3 +114,14 @@ Buffer<uint8_t> c({ 0x05, 0x06 });
 
 b != c; // true
 ```
+
+
+### slice(start[, end])
+Returns a new instance of Buffer that references the same memory as the
+original, but offset and cropped by the start and end indices.
+
+```c++
+Buffer<uint8_t> b({ 0x00, 0x00, 0x00, 0x00 });
+
+auto slice = b.slice(2, 4); // <Buffer 03 04>
+```
