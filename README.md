@@ -125,3 +125,5 @@ Buffer<uint8_t> b({ 0x01, 0x02, 0x03, 0x04 });
 
 auto slice = b.slice(2, 4); // <Buffer 03 04>
 ```
+
+[0]:https://github.com/datcxx/build
