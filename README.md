@@ -1,56 +1,116 @@
 # SYNOPSIS
-A little sugar on top of `uv_buf_t`. This should get moved out to
-another module called `nodeuv-buffer`.
+A Buffer class.
+
 
 # USAGE
+This module is designed to work with the [`datcxx`][0] build tool. To add this
+module to your project us the following command...
 
-## AS A MODULE USING `BALE`.
-```cpp
-import Buffer "buffer"
-Buffer buf(10);
+```bash
+build add datcxx/cxx-buffer
 ```
 
-## AS A REGLUAR C++ LIBRARY.
-Build with `buffer.cc` as a dependency and include the header file.
 
-```cpp
-#include "buffer.h"
-Buffer buf(10);
+# TEST
+
+```bash
+build test
+```
+
+
+# EXAMPLE
+
+```c++
+Buffer<uint8_t> a(128);
+Buffer<uint8_t> b = { 0x00, 0xFF };
+
+auto c = a.concat(b);
 ```
 
 # API
 
+
 ## CONSTRUCTOR
-Various ways to construct a buffer.
+The `Buffer` constructor overloads `operator<<` so that it can be easily
+piped to `std` streams ie `std::cout`.
 
-### Buffer buf();
-### Buffer buf(size);
-### Buffer buf(string data);
-### Buffer buf(char* data);
+```c++
+Buffer<T> b;
+```
 
-## INSTANCE METHODS
+```c++
+Buffer<T> b(size_t size);
+```
 
-### `string` buf.toString();
-Convert the buffer to a string.
+```c++
+Buffer<T> b = { 0x00, 0x00 };
+```
 
-### `int` buf.length();
-The length of the buffer.
+```c++
+Buffer<T> b({ 0x00, 0x00 });
+```
 
-### `void` buf.copy(Buffer targetBuf[, int targetStart][, int sourceStart][, int sourceEnd]);
-Copy a buffer into another one.
+```c++
+Buffer<T> b(anotherBuffer);
+```
 
-- `targetBuf` a buffer to copy from.
-- `targetStart` an optional `int`, defaults to `0`.
-- `sourceStart` an optional `int`, defaults to `0`.
-- `sourceEnd` an optional `int`, defaults to the srouce buffer's length.
 
-Copies data from a region of this buffer to a region in the target buffer
-even if the target memory region overlaps with the source. If undefined
-the targetStart and sourceStart parameters default to 0 while sourceEnd 
-defaults to the source buffer's `buffer.length`.
+## METHODS
 
-## INSTANCE MEMBERS
 
-### buf.data 
-The current value of the buffer.
+### length()
+Returns an `integer`, the amount of memory allocated for buf in bytes. Note that
+this does not necessarily reflect the amount of "usable" data within buf.
 
+```c++
+Buffer<uint8_t> b = { 0x00, 0x00 };
+b.length(); // 2
+```
+
+### copy(target[, targetStart[, sourceStart[, sourceEnd]]]
+Returns an `integer`, the number of bytes copied. Ba
+
+- `Buffer<T>` _target_ A Buffer to copy into.
+
+- `size_t` _targetStart = 0_ The offset within target at which to begin writing.
+
+- `size_t` _sourceStart = 0_ The offset within buf from which to begin copying.
+
+- `size_t` _sourceEnd = buf.length()_ The offset within buf at which to stop
+copying (not inclusive).
+
+
+#### EXAMPLE
+```c++
+Buffer<uint8_t> a({ 01, 02, 03, 04, 05, 06, 07, 0xFF });
+Buffer<uint8_t> b({ 00, 00, 00, 00, 00, 00 });
+a.copy(b, 3, 2);
+
+// a == <Buffer 01 02 03 04 05 06 07 ff>
+// b == <Buffer 00 00 00 03 04 05>
+```
+
+### concat([buffer[, ...]])
+Returns a new Buffer, the result of concatenating a list of Buffer instances.
+
+
+#### EXAMPLE
+```c++
+Buffer<uint8_t> a({ 0x01, 0x02 });
+Buffer<uint8_t> b({ 0x03, 0x04 });
+Buffer<uint8_t> c({ 0x05, 0x06 });
+
+auto d = a.concat({ b, c });
+
+// d == <Buffer 01 02 03 04 05 06>
+```
+
+### equals(buffer)
+To compare two buffers you can just use the `==` and `!=` operators.
+
+```c++
+Buffer<uint8_t> b({ 0x03, 0x04 });
+Buffer<uint8_t> c({ 0x05, 0x06 });
+
+b != c; // true
+```

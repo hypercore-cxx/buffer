@@ -1,5 +1,4 @@
 *.sw*
-build/
 deps/
-test/test
+test/index
 

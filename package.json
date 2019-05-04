@@ -1,0 +1,25 @@
+{
+  "name": "buffer",
+  "description": "buffers class",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:datcxx/cxx-buffer.git"
+  },
+  "dependencies": {
+    "git@github.com:heapwolf/cxx-tap": "07821de0"
+  },
+  "license": "MIT",
+  "scripts": {
+    "test": [
+      "c++ -std=c++2a",
+      "test/index.cxx -o test/index && ./test/index"
+    ],
+    "install": ""
+  },
+  "flags": [
+    "-std=c++2a"
+  ],
+  "files": [
+    "index.hxx"
+  ]
+}
