@@ -129,6 +129,27 @@ class Buffer {
       return copy(buf, targetStart, sourceStart, buf.value.size());
     };
 
+    Buffer slice(size_t from, size_t to) {
+      const auto size = this->value.size();
+      if (from > size || to > size) {
+        Buffer<T> buf;
+        return buf;
+      }
+
+      auto _from = std::begin(this->value) + from;
+      auto _to = std::begin(this->value) + to;
+
+      std::vector<T> value(_from, _to);
+
+      Buffer<T> buf(value.size());
+      buf.value = value;
+      return buf;
+    };
+
+    Buffer slice(size_t from) {
+      return slice(from, this->value.size());
+    };
+
     ~Buffer () {
       this->value.clear();
     };

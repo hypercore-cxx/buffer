@@ -146,4 +146,30 @@ int main() {
     t->equal(b.length(), 6, "length is correct");
     t->end();
   });
+
+  t.test("slice", [](auto t) {
+    Buffer<uint8_t> a({ 0x01, 0x02, 0x03, 0x04 });
+    auto sliceA = a.slice(0, 2);
+    t->equal(sliceA[0], 1, "value at index[0] is correct");
+    t->equal(sliceA[1], 2, "value at index[1] is correct");
+    t->equal(sliceA.length(), 2, "new buffer is correct length");
+
+    std::cout << std::endl << "# " << sliceA;
+
+    auto sliceB = a.slice(2, 4);
+    t->equal(sliceB[0], 3, "value at index[0] is correct");
+    t->equal(sliceB[1], 4, "value at index[1] is correct");
+    t->equal(sliceB.length(), 2, "new buffer is correct length");
+
+    std::cout << std::endl << "# " << sliceB;
+
+    auto sliceC = a.slice(2);
+
+    std::cout << std::endl << "# " << sliceC;
+
+    t->ok(sliceB == sliceC, "buffers are the same");
+    t->ok(sliceA != sliceC, "buffers are the same");
+    t->end();
+  });
+
 }
