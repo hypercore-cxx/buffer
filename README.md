@@ -107,7 +107,8 @@ auto d = a.concat({ b, c });
 ```
 
 ### equals(buffer)
-To compare two buffers you can just use the `==` and `!=` operators.
+To compare two buffers you can use the `==` and `!=` operators. Each
+element in the buffer will be compared, if all are equal the result is `true`.
 
 #### EXAMPLE
 ```c++
