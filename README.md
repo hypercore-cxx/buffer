@@ -71,12 +71,12 @@ b.length(); // 2
 ### copy(target[, targetStart[, sourceStart[, sourceEnd]]]
 Returns an `integer`, the number of bytes copied.
 
-| Type | Parameter | Default Value | Optional | Description |
-|---|---|---|---|
-| Buffer<T> | target      |              | No  | A Buffer to copy into. |
-| size_t    | targetStart | 0            | Yes | The offset within target at which to begin writing. |
-| size_t    | sourceStart | 0            | Yes | The offset within buf from which to begin copying. |
-| size_t    | sourceEnd   | buf.length() | Yes | The offset within buf at which to stop. copying (not inclusive). |
+| Type   | Parameter   | Default Value | Optional | Description                                                      |
+| ------ | ----------- | ------------- | -------- | ---------------------------------------------------------------- |
+| Buffer | target      |               | No       | A Buffer to copy into.                                           |
+| size_t | targetStart | 0             | Yes      | The offset within target at which to begin writing.              |
+| size_t | sourceStart | 0             | Yes      | The offset within buf from which to begin copying.               |
+| size_t | sourceEnd   | buf.length()  | Yes      | The offset within buf at which to stop. copying (not inclusive). |
 
 
 #### EXAMPLE
@@ -121,10 +121,12 @@ b != c; // true
 Returns a new instance of Buffer that references the same memory as the
 original, but offset and cropped by the start and end indices.
 
-| Type | Parameter | Default Value | Optional | Description |
-|---|---|---|---|
-| size_t | start | 0            | No  | Where the new Buffer will start. |
-| size_t | end   | buf.length() | Yes | Where the new Buffer will end (not inclusive). |
+
+| Type   | Parameter | Default Value | Optional | Description                                    |
+| ------ | --------- | ------------- | -------- | ---------------------------------------------- |
+| size_t | start     | 0             | No       | Where the new Buffer will start.               |
+| size_t | end       | buf.length()  | Yes      | Where the new Buffer will end (not inclusive). |
+
 
 #### EXAMPLE
 ```c++
