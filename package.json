@@ -5,7 +5,7 @@
     "type": "git",
     "url": "git@github.com:datcxx/buffer.git"
   },
-  "dependencies": {
+  "devDependencies": {
     "git@github.com:heapwolf/cxx-tap": "07821de0"
   },
   "license": "MIT",
