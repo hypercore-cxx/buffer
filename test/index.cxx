@@ -5,6 +5,8 @@
 #include <sstream>
 
 int main() {
+  using namespace Hyper::Util;
+
   TAP::Test t;
 
   t.test("sanity", [](auto t) {
