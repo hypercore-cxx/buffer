@@ -21,6 +21,7 @@ namespace Hyper {
 
     ///
     /// class Buffer<T>
+    /// comment A class that provides some convenient methods for managing buffers.
     ///
     template<typename T>
     class Buffer {
@@ -132,7 +133,7 @@ namespace Hyper {
         };
 
         ///
-        /// constructor Buffer(const string&)
+        /// constructor Buffer(const string& str)
         /// comment Constructs a buffer from a string.
         ///
         Buffer(const std::string& str) {
@@ -140,7 +141,7 @@ namespace Hyper {
         };
 
         ///
-        /// constructor Buffer(const Buffer&)
+        /// constructor Buffer(const Buffer& buf)
         /// comment Constructs a buffer from another buffer.
         ///
         Buffer(const Buffer& buf) {
@@ -149,8 +150,9 @@ namespace Hyper {
 
         ///
         /// method toString()
-        /// return std::string
         /// comment Get the value of of the buffer as a string.
+        ///
+        /// return std::string
         ///
         std::string toString() {
           std::string str(this->value.begin(), this->value.end());
@@ -159,8 +161,9 @@ namespace Hyper {
 
         ///
         /// method length()
-        /// return int
         /// comment Get the size of the buffer in by bytes.
+        ///
+        /// return int
         ///
         int length() {
           return this->value.size();
@@ -303,7 +306,7 @@ namespace Hyper {
         };
 
         ///
-        /// overload slice(size_t)
+        /// overload slice(size_t from)
         /// return Buffer
         ///
         Buffer slice(size_t from) {
