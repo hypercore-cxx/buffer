@@ -109,13 +109,13 @@ namespace Hyper {
         }
 
         ///
-        /// constructor Buffer(initializer_list<T> list)
+        /// constructor Buffer<T>(initializer_list<T> list)
         /// comment Constructs a buffer from an initializer list.
         ///
         Buffer(std::initializer_list<T> l) : value(l) {}
 
         ///
-        /// constructor Buffer()
+        /// constructor Buffer<T>()
         /// comment Constructs an empty buffer.
         ///
         Buffer() {
@@ -123,7 +123,7 @@ namespace Hyper {
         };
 
         ///
-        /// constructor Buffer(size_t size)
+        /// constructor Buffer<T>(size_t size)
         /// comment Constructs a buffer with a value of `size`.
         ///
         /// param size The size initially allocated for the buffer value.
@@ -133,7 +133,7 @@ namespace Hyper {
         };
 
         ///
-        /// constructor Buffer(const string& str)
+        /// constructor Buffer<T>(const string& str)
         /// comment Constructs a buffer from a string.
         ///
         Buffer(const std::string& str) {
@@ -141,7 +141,7 @@ namespace Hyper {
         };
 
         ///
-        /// constructor Buffer(const Buffer& buf)
+        /// constructor Buffer<T>(const Buffer& buf)
         /// comment Constructs a buffer from another buffer.
         ///
         Buffer(const Buffer& buf) {
