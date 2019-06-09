@@ -62,6 +62,19 @@ Buffer<T> b(anotherBuffer);
 Returns an `integer`, the amount of memory allocated for buf in bytes. Note that
 this does not necessarily reflect the amount of "usable" data within buf.
 
+### toString()
+Returns a `std::string` version of the buffer's value.
+
+### toString(const std::string encoding, size_t start, size_t end)
+Returns an encoded `std::String` (at optionally specified start and end).
+
+| Type        | Parameter   | Default Value | Optional | Description                                                      |
+| ----------- | ----------- | ------------- | -------- | ---------------------------------------------------------------- |
+| std::string | target      |               | No       | A Buffer to copy into.                                           |
+| size_t      | start       | 0             | Yes      | The offset within buf from which to begin the slice.             |
+| size_t      | end         | buf.length()  | Yes      | The offset within buf at which to stop the slice.                |
+
+
 #### EXAMPLE
 ```c++
 Buffer<uint8_t> b = { 0x00, 0x00 };
