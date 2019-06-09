@@ -174,4 +174,49 @@ int main() {
     t->end();
   });
 
+  t.test("toString()", [](auto t) {
+    Buffer<uint8_t> a("abc");
+    std::string expected = "abc";
+    t->equal(expected, a.toString(), "strings are equal");
+    t->end();
+  });
+
+  t.test("toString(\"hex\", 0, 0)", [](auto t) {
+    Buffer<uint8_t> a("abc");
+    std::stringstream ss;
+    ss << std::hex << "abc";
+    std::string expected = ss.str();
+
+    t->equal(a.toString("hex"), expected, "strings are equal");
+    t->end();
+  });
+
+  t.test("toString(\"hex\", 3, 9)", [](auto t) {
+    Buffer<uint8_t> a("abcdef0123456789");
+    std::stringstream ss;
+    ss << std::hex << "def012";
+    std::string expected = ss.str();
+
+    t->equal(a.toString("hex", 3, 9), expected, "strings are equal");
+    t->end();
+  });
+
+  t.test("toString(\"base64\")", [](auto t) {
+    Buffer<uint8_t> buf("Hello, world!");
+    std::string expected = "SGVsbG8sIHdvcmxkIQ==";
+    expected.push_back('\0');
+
+    t->equal(buf.toString("base64"), expected, "strings are equal");
+    t->end();
+  });
+
+  t.test("toString(\"base64\", 1, 5)", [](auto t) {
+    Buffer<uint8_t> buf("Hello, world!");
+    std::string expected = "ZWxsbw==";
+    expected.push_back('\0');
+
+    t->equal(buf.toString("base64", 1, 5), expected, "strings are equal");
+    t->notEqual(buf.toString("base64", 1, 4), expected, "strings are not equal");
+    t->end();
+  });
 }
