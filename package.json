@@ -10,10 +10,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": [
-      "clang++ -std=c++2a -stdlib=libc++",
-      "test/index.cxx -o test/index && ./test/index"
-    ],
+    "test": "clang++ test/index.cxx -o test/index && ./test/index",
     "install": ""
   },
   "flags": [
@@ -24,6 +21,6 @@
     "index.hxx"
   ],
   "dependencies": {
-    "git@github.com:datcxx/sodium": "7095935a"
+    "git@github.com:datcxx/sodium": "2c1379e0"
   }
 }
