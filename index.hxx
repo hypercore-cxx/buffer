@@ -10,7 +10,7 @@
 #include <iomanip>
 #include <exception>
 
-#include "deps/datcxx/sodium/index.hxx"
+#include "deps/datcxx/sodium-base64/index.hxx"
 
 ///
 /// namespace Hyper

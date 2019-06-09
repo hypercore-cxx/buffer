@@ -21,6 +21,6 @@
     "index.hxx"
   ],
   "dependencies": {
-    "git@github.com:datcxx/sodium": "2c1379e0"
+    "git@github.com:datcxx/sodium-base64": "f8f35886"
   }
 }
