@@ -62,6 +62,12 @@ Buffer<T> b(anotherBuffer);
 Returns an `integer`, the amount of memory allocated for buf in bytes. Note that
 this does not necessarily reflect the amount of "usable" data within buf.
 
+#### EXAMPLE
+```c++
+Buffer<uint8_t> b = { 0x00, 0x00 };
+b.length(); // 2
+```
+
 ### toString()
 Returns a `std::string` version of the buffer's value.
 
@@ -77,8 +83,8 @@ Returns an encoded `std::String` (at optionally specified start and end).
 
 #### EXAMPLE
 ```c++
-Buffer<uint8_t> b = { 0x00, 0x00 };
-b.length(); // 2
+Buffer<uint8_t> b("Hello, world!");
+b.toString("base64"); // "SGVsbG8sIHdvcmxkIQ=="
 ```
 
 ### copy(target[, targetStart[, sourceStart[, sourceEnd]]]
