@@ -182,15 +182,13 @@ namespace Hyper {
             ss << std::hex;
           }
 
-          ss << this->value;
-
           std::string substring(
             this->value.begin() + start,
-            this->value.end() - end
+            this->value.begin() + end
           );
 
-          std::string str(substring);
-          return str;
+          ss << substring;
+          return ss.str();
         };
 
         ///
