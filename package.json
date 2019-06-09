@@ -22,5 +22,8 @@
   ],
   "files": [
     "index.hxx"
-  ]
+  ],
+  "dependencies": {
+    "git@github.com:datcxx/sodium": "7095935a"
+  }
 }

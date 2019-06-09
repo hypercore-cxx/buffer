@@ -10,6 +10,8 @@
 #include <iomanip>
 #include <exception>
 
+#include "deps/datcxx/sodium/index.hxx"
+
 ///
 /// namespace Hyper
 ///
@@ -164,6 +166,8 @@ namespace Hyper {
         /// method toString(const std::string& encoding, size_t start = 0, size_t end = 0)
         /// comment Get the value of of the buffer as a string.
         ///
+        /// param encoding type.
+        ///
         /// return std::string
         ///
         std::string toString(const std::string& encoding, size_t start = 0, size_t end = 0) {
@@ -186,6 +190,10 @@ namespace Hyper {
             this->value.begin() + start,
             this->value.begin() + end
           );
+
+          if (encoding == "base64") {
+            return Hyper::Sodium::base64Encode(substring);
+          }
 
           ss << substring;
           return ss.str();

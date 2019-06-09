@@ -200,4 +200,23 @@ int main() {
     t->equal(a.toString("hex", 3, 9), expected, "strings are equal");
     t->end();
   });
+
+  t.test("toString(\"base64\")", [](auto t) {
+    Buffer<uint8_t> buf("Hello, world!");
+    std::string expected = "SGVsbG8sIHdvcmxkIQ==";
+    expected.push_back('\0');
+
+    t->equal(buf.toString("base64"), expected, "strings are equal");
+    t->end();
+  });
+
+  t.test("toString(\"base64\", 1, 5)", [](auto t) {
+    Buffer<uint8_t> buf("Hello, world!");
+    std::string expected = "ZWxsbw==";
+    expected.push_back('\0');
+
+    t->equal(buf.toString("base64", 1, 5), expected, "strings are equal");
+    t->notEqual(buf.toString("base64", 1, 4), expected, "strings are not equal");
+    t->end();
+  });
 }
