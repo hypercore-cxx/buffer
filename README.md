@@ -76,7 +76,7 @@ Returns an encoded `std::String` (at optionally specified start and end).
 
 | Type        | Parameter   | Default Value | Optional | Description                                                      |
 | ----------- | ----------- | ------------- | -------- | ---------------------------------------------------------------- |
-| std::string | target      |               | No       | A Buffer to copy into.                                           |
+| std::string | encoding    |               | No       | Encoding, currently supports either "base64" or "hex".           |
 | size_t      | start       | 0             | Yes      | The offset within buf from which to begin the slice.             |
 | size_t      | end         | buf.length()  | Yes      | The offset within buf at which to stop the slice.                |
 
