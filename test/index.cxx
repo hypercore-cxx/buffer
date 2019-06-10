@@ -183,19 +183,15 @@ int main() {
 
   t.test("toString(\"hex\", 0, 0)", [](auto t) {
     Buffer<uint8_t> a("abc");
-    std::stringstream ss;
-    ss << std::hex << "abc";
-    std::string expected = ss.str();
+    std::string expected = "616263";
 
-    t->equal(a.toString("hex"), expected, "strings are equal");
+    t->equal(a.toString("hex"), expected, "hex strings are equal");
     t->end();
   });
 
   t.test("toString(\"hex\", 3, 9)", [](auto t) {
     Buffer<uint8_t> a("abcdef0123456789");
-    std::stringstream ss;
-    ss << std::hex << "def012";
-    std::string expected = ss.str();
+    std::string expected = "646566303132";
 
     t->equal(a.toString("hex", 3, 9), expected, "strings are equal");
     t->end();
@@ -204,7 +200,6 @@ int main() {
   t.test("toString(\"base64\")", [](auto t) {
     Buffer<uint8_t> buf("Hello, world!");
     std::string expected = "SGVsbG8sIHdvcmxkIQ==";
-    expected.push_back('\0');
 
     t->equal(buf.toString("base64"), expected, "strings are equal");
     t->end();
@@ -213,7 +208,6 @@ int main() {
   t.test("toString(\"base64\", 1, 5)", [](auto t) {
     Buffer<uint8_t> buf("Hello, world!");
     std::string expected = "ZWxsbw==";
-    expected.push_back('\0');
 
     t->equal(buf.toString("base64", 1, 5), expected, "strings are equal");
     t->notEqual(buf.toString("base64", 1, 4), expected, "strings are not equal");
