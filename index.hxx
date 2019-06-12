@@ -140,7 +140,7 @@ namespace Hyper {
         /// comment Constructs a buffer from a string.
         ///
         Buffer(const std::string& str) {
-          this->value = std::vector<uint8_t>(str.begin(), str.end());
+          this->value = std::vector<T>(str.begin(), str.end());
         };
 
         ///
