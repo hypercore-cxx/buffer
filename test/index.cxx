@@ -174,10 +174,27 @@ int main() {
     t->end();
   });
 
+  t.test("fill(string)", [](auto t) {
+    {
+      Buffer<uint8_t> a(8);
+      auto b = a.fill("o");
+      std::string expected = "oooooooo";
+      t->equal(b.toString(), expected, "strings are equal");
+    }
+
+    {
+      Buffer<uint8_t> a(8);
+      auto b = a.fill("xo");
+      std::string expected = "xoxoxoxo";
+      t->equal(b.toString(), expected, "strings are equal");
+    }
+    t->end();
+  });
+
   t.test("toString()", [](auto t) {
     Buffer<uint8_t> a("abc");
     std::string expected = "abc";
-    t->equal(expected, a.toString(), "strings are equal");
+    t->equal(a.toString(), expected, "strings are equal");
     t->end();
   });
 

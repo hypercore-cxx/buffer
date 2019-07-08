@@ -152,6 +152,44 @@ namespace Hyper {
         };
 
         ///
+        /// method fill(const std::string str, size_t start = 0, size_t end = 0)
+        /// comment Fill the buffer with str from start to end.
+        ///
+        /// return Buffer
+        /// comment Returns a new buffer containing the fill.
+        ///
+        Buffer fill(const std::string str, size_t start = 0, size_t end = 0) {
+          auto size = this->value.size();
+
+          // don't allow start to be greater than the underlying buffer size.
+          if (start > size) {
+            start = size;
+          }
+
+          // if start is greater than zero, subtract that from the size.
+          if (start > 0) {
+            size -= start;
+          }
+
+          // if end is zero or greater than size, bring it back down to size.
+          if (end == 0 || end > size) {
+            end = size;
+          }
+
+          // construct a return buffer that duplicates the underlying buffer.
+          Buffer res(this->value.size());
+          res.value = this->value;
+
+          for (int i = start; i < end;) {
+            for (auto& ch : str) {
+              res.value[i++] = ch;
+            }
+          }
+
+          return res;
+        };
+
+        ///
         /// method toString()
         /// comment Get the value of of the buffer as a string.
         ///
